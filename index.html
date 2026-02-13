@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Bujji ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  .heart {
+    position: absolute;
+    color: rgba(255, 77, 109, 0.65);
+    animation: floatUp 7s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 0; }
+    20% { opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+  }
+
+  .card {
+      position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  width: 95%;
+  max-width: 700px;      /* MUCH bigger */
+  min-height: 520px;     /* taller */
+  padding: 60px;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fff6f8 100%);
+  border-radius: 30px;
+  text-align: center;
+
+  border: 3px solid rgba(255, 77, 109, 0.25);
+
+  box-shadow:
+    0 30px 60px rgba(255, 77, 109, 0.25),
+    0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  h1 {
+    color: #e60073;
+    font-size: 42px;
+    margin-bottom: 30px;
+  }
+
+  span {
+    color: #ff4d6d;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 18px 40px;
+    font-size: 22px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    position: absolute;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+    left: 60px;
+    bottom: 40px;
+  }
+
+  .no {
+    background: #ccc;
+    width: 140px;
+    height: 60px;
+    left: 380px;
+    bottom: 40px;
+  }
+
+  .love-text {
+    display: none;
+    margin-top: 20px;
+    font-size: 26px;
+    color: #e60073;
+    font-weight: bold;
+  }
+
+  .couple-img {
+    display: none;
+    margin: 20px auto 0;
+    width: 100%;
+    max-height: 302px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💖 Will You Be My Valentine, <span>Bujji</span>? 💖</h1>
+
+  <button class="yes" id="yesBtn">Yes 😍</button>
+  <button class="no" id="noBtn">No 🙈</button>
+
+  <div class="love-text" id="loveText">
+    YAYYY 😍❤️ Bujji said YES! Best Valentine ever 😘
+  </div>
+
+  <!-- Embedded Image -->
+  <img
+    id="coupleImg"
+    class="couple-img"
+    src="couple.png.jpeg"
+    alt="Cute Couple"
+  />
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const loveText = document.getElementById("loveText");
+  const coupleImg = document.getElementById("coupleImg");
+  const card = document.querySelector(".card");
+
+  function moveNo() {
+    const maxX = card.clientWidth - noBtn.offsetWidth - 20;
+    const maxY = card.clientHeight - noBtn.offsetHeight - 20;
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top  = Math.random() * maxY + "px";
+  }
+
+  noBtn.addEventListener("mouseenter", moveNo);
+  noBtn.addEventListener("touchstart", moveNo);
+
+  yesBtn.addEventListener("click", () => {
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    loveText.style.display = "block";
+    coupleImg.style.display = "block";
+  });
+
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 20 + Math.random() * 14 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 800);
+</script>
+
+</body>
+</html>
